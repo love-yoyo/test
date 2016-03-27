@@ -1,0 +1,72 @@
+@color-green: #1AD1CC;
+@color-black: #000000;
+@color-white: #ffffff;
+@color-shadow: #aaaaaa;
+@color-shadow-black: #000000;
+@color-e0: #e0e0e0;
+@color-f0: #f0f0f0;
+@color-f5: #f5f5f5;
+@color-fa: #fafafa;
+@color-cb: #cbcbcb;
+@color-80: #808080;
+@color-84: #848484;
+@color-36: #363636;
+@color-33: #333333;
+@color-88: #888888;
+@color-42: #424242;
+@color-4c: #4c4c4c;
+@color-7f: #7f7f7f;
+
+.browserPrefix(@prop, @rest...) {
+    @{prop}: @rest;
+    -moz-@{prop}: @rest;
+    -webkit-@{prop}: @rest;
+    -o-@{prop}: @rest;
+}
+
+.resetA() {
+    a:visited,
+    a:link,
+    a:focus,
+    a:hover,
+    a:active {
+        text-decoration: blink;
+        outline: none;
+    }
+}
+
+body{
+    font-family: 'Microsoft YaHei' !important;
+    .overlay{
+        background: #000;
+        filter: alpha(opacity=50); /* IE的透明度 */
+        opacity: 0.5;  /* 透明度 */
+        display: none;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: 2000; /* 此处的图层要大于页面 */
+        display:none;
+    }
+}
+
+.resetA();
+ul{
+    padding-left: 0;
+}
+li {
+    list-style-type: none;
+    .resetA()
+}
+
+.hidden {
+    display: none;
+}
+
+
+
+
+
+

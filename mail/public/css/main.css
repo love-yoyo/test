@@ -1,0 +1,43 @@
+body {
+  font-family: 'Microsoft YaHei' !important;
+}
+body .overlay {
+  background: #000;
+  filter: alpha(opacity=50);
+  /* IE的透明度 */
+  opacity: 0.5;
+  /* 透明度 */
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 2000;
+  /* 此处的图层要大于页面 */
+  display: none;
+}
+a:visited,
+a:link,
+a:focus,
+a:hover,
+a:active {
+  text-decoration: blink;
+  outline: none;
+}
+ul {
+  padding-left: 0;
+}
+li {
+  list-style-type: none;
+}
+li a:visited,
+li a:link,
+li a:focus,
+li a:hover,
+li a:active {
+  text-decoration: blink;
+  outline: none;
+}
+.hidden {
+  display: none;
+}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>工单添加</title>
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+    <h3 style="padding:30px;text-align: center">添加工作项目</h3>
+    <div class="container">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label for="name" class="col-sm-offset-3 col-sm-2 control-label">需求工单ID</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="requireId" placeholder="请输入需求工单ID">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="url" class="col-sm-2 control-label">需求描述</label>
+                <div class="col-sm-4">
+                    <textarea id="requireDesc" placeholder="请输入需求描述" class="form-control" required></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="json" class="col-sm-offset-3 col-sm-2 control-label">负责人</label>
+                <div class="col-sm-4">
+                    <select class="form-control" id="author">
+                        <% for (var i=0;i<authors.length;i++) {%>
+                        <option value="<%=authors[i].id%>"><%=authors[i].name%></option>
+                        <%}%>
+                    </select> 
+                </div>
+
+            </div>
+            <div class="form-group">
+                <label for="misc" class="col-sm-offset-3 col-sm-2 control-label">昨日进度</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="lastProgress" placeholder="请输入昨天进度" required="required">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="misc" class="col-sm-offset-3 col-sm-2 control-label">今日计划</label>
+                <div class="col-sm-4">
+                    <!-- <input type="text" class="form-control" id="todayProgress" placeholder="请输入今日计划" required="required"> -->
+                    <textarea id="todayProgress" placeholder="请输入今日计划" class="form-control" required="required"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="misc" class="col-sm-offset-3 col-sm-2 control-label">今日工作描述</label>
+                <div class="col-sm-4">
+                    <!-- <input type="text" class="form-control" id="todayDesc" placeholder="请输入今日工作描述" required="required"> -->
+                    <textarea id="todayDesc" placeholder="请输入今日工作描述" class="form-control" required="required"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="misc" class="col-sm-offset-3 col-sm-2 control-label">备注</label>
+                <div class="col-sm-4">
+                    <!-- <input type="text" class="form-control" id="remark" placeholder="备注"> -->
+                    <textarea id="remark" placeholder="备注" class="form-control"></textarea>
+                </div>
+            </div>
+            <div class="col-sm-offset-4 col-sm-6">
+                <a class="btn btn-default col-xs-2" href="/" role="button" id="back_btn">返回</a>
+                <button type="submit" class="btn btn-primary col-sm-3 col-sm-offset-2" id="confirm_btn">提交</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
+<script type="text/javascript" src="/bower_components/notie/notie.js"></script>
+<script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript">
+$(function() {
+    $('form').submit(function(e) {
+        e.preventDefault();
+        var _data = {
+            requireId: $("#requireId").val(),
+            requireDesc: $("#requireDesc").val(),
+            author: $("#author").val(),
+            lastProgress: $("#lastProgress").val(),
+            todayProgress: $("#todayProgress").val(),
+            todayDesc: $("#todayDesc").val(),
+            remark: $("#remark").val(),
+        };
+        $.ajax({
+                cache: true,
+                url: '/work/add',
+                type: 'POST',
+                dataType: 'json',
+                data: _data,
+            })
+            .success(function(data) {
+                // console.log(data.errMsg);
+                notie.alert(1, data.errMsg, 2);
+            })
+            .error(function() {
+                // console.log('error');
+                notie.alert(3, data.errMsg, 2);
+            })
+            .complete(function() {
+                // console.log("complete");
+            });
+    });
+});
+</script>
